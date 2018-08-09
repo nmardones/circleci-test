@@ -1,0 +1,19 @@
+{
+  "name": "circle-ci",
+  "version": "1.0.0",
+  "description": "prueba circleci",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nmardones/circleci-test.git"
+  },
+  "author": "nmardones",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nmardones/circleci-test/issues"
+  },
+  "homepage": "https://github.com/nmardones/circleci-test#readme"
+}
