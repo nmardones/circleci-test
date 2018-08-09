@@ -8,10 +8,10 @@ jobs:
       - run: echo "Primer Kiu!"
       - run: mkdir -p my_workspace
       - run: echo "Traying out workspace" > my_workspace/echo-output
-      - run: persist_to_workspace:
-        root: my_workspace
-        path: 
-          - echo-output
+      - persist_to_workspace:
+          root: my_workspace
+          paths: 
+            - echo-output
   two:
     docker: 
       - image: circleci/node:4.8.2
@@ -19,8 +19,8 @@ jobs:
       - checkout
       - run: echo "Otro Kiu! más"
       - attach_workspace:
-        at: my_workspace
-      - run: |
+          at: my_workspace
+      - run: 
           if [[ $(cat my_workspace/echo-output) == "Traying out workspace"]]; then
             echo "Funcina (:"
           else
@@ -28,13 +28,13 @@ jobs:
           fi   
 
 workflows:
-  verion: 2
-  one_and_two:
-    jobs:
-      - one
-      - two:
-        requires:
-          -one
+   verion: 2
+   one_and_two:
+     jobs:
+       - one
+       - two:
+         requires:
+           -one
 
 
 
