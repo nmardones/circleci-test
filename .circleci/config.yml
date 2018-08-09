@@ -1,31 +1,33 @@
 version: 2
 jobs:
   one: 
-    docker: 
-      -image: circleci/node:4.8.2
-    steps:
-      - checkout
-      - run: echo "Primer Kiu!"
-      - run: mkdir -p my_workspace
-      - run: echo "Traying out workspace" > my_workspace/echo-output
-      - run: persist_to_workspace:
-        root: my_workspace
-        path: 
-          - echo-output
-  two: 
-    docker: 
-      -image: circleci/node:4.8.2
-    steps:
-      - checkout
-      - run: echo "Otro Kiu! más"
-      - attach_workspace:
-        at: my_workspace
-      - run: |
-          if [[ $(cat my_workspace/echo-output) == "Traying out workspace"]]; then
-            echo "Funcina (:"
-          else
-            echo "No Funcina :("
-          fi   
+    build:
+      docker: 
+        -image: circleci/node:4.8.2
+      steps:
+        - checkout
+        - run: echo "Primer Kiu!"
+        - run: mkdir -p my_workspace
+        - run: echo "Traying out workspace" > my_workspace/echo-output
+        - run: persist_to_workspace:
+          root: my_workspace
+          path: 
+            - echo-output
+  two:
+    build: 
+      docker: 
+        -image: circleci/node:4.8.2
+      steps:
+        - checkout
+        - run: echo "Otro Kiu! más"
+        - attach_workspace:
+          at: my_workspace
+        - run: |
+            if [[ $(cat my_workspace/echo-output) == "Traying out workspace"]]; then
+              echo "Funcina (:"
+            else
+              echo "No Funcina :("
+            fi   
 
 workflows:
   verion: 2
